@@ -1,0 +1,10 @@
+Chicos, aquí os dejo algunas indicaciones de procedimiento.
+
+	1.- Verificar que tenéis la última versión del archivo.
+	2.- Cuando acabéis de modificar la pieza, guardar todas las modificaciones.
+	3.- El mismo GitHub os dirá que se ha modificado y que necesitaréis hacer "Push" y después "Commit".
+	4.- Notificar cada vez que subáis nuevas versiones.
+
+Cualquier duda preguntarme y os dejo un par de tutoriales:
+ https://www.youtube.com/watch?v=DinilgacaWs&ab_channel=Platzi
+ https://www.youtube.com/watch?v=sb32xM7kpVA&ab_channel=MarioGarc%C3%ADa
