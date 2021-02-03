@@ -60,7 +60,7 @@ void compararConsumoAgua(const vector<tConsumoProvincia> &compar_compo, string c
 void Agregar_entidad1(tPrecioagua &tpa, vector <tPrecioagua> &vtpa);
 void Agregar_entidad2(tComposicion &tca, vector <tComposicion> &vtcp);
 void Agregar_entidad3 (tConsumoProvincia &tcpa, vector <tConsumoProvincia> &vtcpa);
-///void Modificar_entidad1 (string buscar, vector <tPrecioagua> fila, int &pos);
+void Modificar_entidad1 ( vector <tPrecioagua> fila);
 ///void eliminarEntidad1(tPrecioagua &tpa, vector<tPrecioagua> &tpane);
 ///void mostrarComunidadAgua(const tConsumoProvincia &tcpa);
 ///void compararConsumoAgua(const vector<tConsumoProvincia> &compar_compo, string com1, string com2);
@@ -79,6 +79,7 @@ int main(){
 	tConsumoProvincia tcpa;
     int opcion, op, op2, pos;
 	string bus,agua, caso7, caso31, caso32, manantial,manantialess, provinciass, comunidadess, marcass;
+	string buscar1;
 //Se recomienda mirar la funcionalidad "zero" para conocer los listados disponibles.
 	do{
 //Llamada de los subprogramas de lectura de las entidades.
@@ -162,7 +163,11 @@ int main(){
                 break;
                 }
                 break;
-            case 7:
+
+                case 7:
+                    Modificar_entidad1(ent1);
+                break;
+            case 8:
                 cout << "...FIN DE PROGRAMMA..." << endl;
                 system("pause");
                 break;
@@ -171,7 +176,7 @@ int main(){
                 system("pause");
                 break;
         }
-	}while(opcion != 7);
+	}while(opcion != 8);
 	return 0;
 }
 
@@ -544,60 +549,55 @@ f.close();
 ///Intentos de implementar funcionalidades extras al programma (Mejoras).
 
 /// Funcionalidad modificar
-/*void Modificar_entidad1 (string buscar, vector <tPrecioagua> fila, int &pos){
-int i =0;
-bool trobat = false;
-cout << "Busqueda: ";
-cin >> buscar;
-while(i<fila.size() && !trobat){
-    if(fila[i].marcap == buscar){
-        trobat=true;
-}
-else{i++;}
-}
-if(trobat){
-        pos=i;
-ofstream f;
-f.open("ENTIDAD1.csv", ios::app);
-for(int i=0;i<fila.size();i++){
-    if (fila[i].marcap == buscar){
+void Modificar_entidad1 (vector <tPrecioagua> fila){
+	int i =0;
+	bool trobat = false;
+	string buscar;
+	cout << "Busqueda: ";
+	cin >> buscar;
 
-cout << "Marca: "<<endl;
-cin >> fila[i].marcap;
-f << fila[i].marcap << ';';
-cout << "Manantial: " << endl;
-cin >> fila[i].manantialp;
-f << fila[i].manantialp << ';';
-cout << "Hipercor: " << endl;
-cin >> fila[i].hipercor;
-f <<fila[i].hipercor<< ';';
-cout << "Carrefour: " << endl;
-cin >> fila[i].carrefour;
-f <<fila[i].carrefour<< ';';
-cout << "Esclat " << endl;
-cin >> fila[i].esclat;
-f <<fila[i].esclat<< ';';
-cout << "Alcampo: " << endl;
-cin >> fila[i].alcampo;
-f <<fila[i].alcampo<< ';';
-cout << "Eroski: " << endl;
-cin >> fila[i].eroski;
-f <<fila[i].eroski<< ';';
-cout << "Consum: " << endl;
-cin >> fila[i].consum;
-f <<fila[i].consum<< ';';
-cout << "Mineralizacion: " << endl;
-cin >> fila[i].mineralizacionp;
-f << fila[i].mineralizacionp << ';';
-f.close();
+	while(i<fila.size() && !trobat){
+	    if(fila[i].marcap == buscar){
+    	    trobat=true;
+		}
+		else{i++;}
+	}
+	if(trobat){
+		ofstream f ("ENTIDAD1.csv", ios::app);
+		cout << "Marca: "<<endl;
+		cin >> fila[i].marcap;
+		f << fila[i].marcap << ';';
+		cout << "Manantial: " << endl;
+		cin >> fila[i].manantialp;
+		f << fila[i].manantialp << ';';
+		cout << "Hipercor: " << endl;
+		cin >> fila[i].hipercor;
+		f <<fila[i].hipercor<< ';';
+		cout << "Carrefour: " << endl;
+		cin >> fila[i].carrefour;
+		f <<fila[i].carrefour<< ';';
+		cout << "Esclat " << endl;
+		cin >> fila[i].esclat;
+		f <<fila[i].esclat<< ';';
+		cout << "Alcampo: " << endl;
+		cin >> fila[i].alcampo;
+		f <<fila[i].alcampo<< ';';
+		cout << "Eroski: " << endl;
+		cin >> fila[i].eroski;
+		f <<fila[i].eroski<< ';';
+		cout << "Consum: " << endl;
+		cin >> fila[i].consum;
+		f <<fila[i].consum<< ';';
+		cout << "Mineralizacion: " << endl;
+		cin >> fila[i].mineralizacionp;
+		f << fila[i].mineralizacionp << ';';
+		f.close();
+	}
+	system ("pause");
 }
-}
-}
-else {i++;}
-}
-*/
+
 /// Funcionalidad eliminar
-/*void eliminarEntidad1(tPrecioagua &tpa, vector<tPrecioagua> &tpane){
+void eliminarEntidad1(tPrecioagua &tpa, vector<tPrecioagua> &tpane){
 	string marca;
 	ifstream file1;
 	file1.open("ENTIDAD1.csv");
@@ -626,9 +626,9 @@ else {i++;}
 	}
 	f.close();
 }
-*/
+/*
 ///Funcionalidad comparacion entidad 3
-/*void mostrarComunidadAgua(const tConsumoProvincia &tcpa){
+void mostrarComunidadAgua(const tConsumoProvincia &tcpa){
 }
 
 void compararConsumoAgua(const vector<tConsumoProvincia> &compar_compo, string com1, string com2){
@@ -636,14 +636,14 @@ void compararConsumoAgua(const vector<tConsumoProvincia> &compar_compo, string c
 	int cont = 0;
 	while(cont < elem){
 		tConsumoProvincia autonomia = compar_compo[cont];
-		if(autonomia.comunidad == com1 and autonomia.comunidad == com2){
+		if(autonomia.comunidad == com1 && autonomia.comunidad == com2){
 			mostrarComunidadAgua(autonomia);
 		}
 		cont++;
 	}
-}*/
+}
 ///Funcionalidad comparacion precios entidad 1
-/*void compararPrecioAgua(const vector<tPrecioagua> &comparativa1, vector<tComparativaPrecio> &definitiva, string marca1, string marca2){
+void compararPrecioAgua(const vector<tPrecioagua> &comparativa1, vector<tComparativaPrecio> &definitiva, string marca1, string marca2){
     int elem = comparativa1.size();
     int cont = 0;
     float precio_medio, precio_medio1, precio_medio2;
@@ -666,5 +666,6 @@ void compararConsumoAgua(const vector<tConsumoProvincia> &compar_compo, string c
         cout<<datos_marca1.marca<<endl;
         cout<<datos_marca1.precio_medio<<endl;
     }
-}*/
+}
 
+*/
